@@ -1,0 +1,21 @@
+# ignore shared volume data of MySQL Docker container
+/src/db-data
+
+# ignore secret for production
+/src/jenathon_rails/.production-secret
+
+# ignore possible log directory
+/src/log-data
+
+# ignore Gemfile.lock
+src/jenathon_rails/Gemfile.lock
+
+
+# ignore log files
+src/jenathon_rails/log
+
+# ignore production data
+production_data
+
+# ignore temporary rails files
+src/jenathon_rails/tmp

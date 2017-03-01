@@ -1,0 +1,26 @@
+FROM agrohmann/ruby_nodejs
+
+## 1: for the first call create the app
+#RUN gem install bundler
+#RUN gem install rails
+#RUN rails new app
+#RUN mkdir -p /tmp/jenathon
+
+# 2: prepare app folder as working dir
+WORKDIR /app
+
+# copy gemfile for bundler
+COPY jenathon_rails/Gemfile /app/
+
+# update gems, update gemfile.lock
+RUN bundle update
+
+# copy source code
+COPY jenathon_rails/ /app/
+
+## precompilation
+#RUN RAILS_ENV=production bundle exec rake assets:precompile
+
+## generate secret key
+#RUN echo export SECRET_KEY_BASE=$SECRET_KEY_BASE >> /root/.bashrc
+#RUN echo export RAILS_ENV=production >> /root/.bashrc

@@ -1,0 +1,27 @@
+jenathon_db:
+  image: mariadb
+  container_name : jenathon_db
+  environment:
+    MYSQL_ROOT_PASSWORD: OpenJena
+#  ports:
+#    - 3306:3306
+  volumes:
+    - ./../production_data/jenathon_db/mysql:/var/lib/mysql
+
+jenathon_rails_production:
+  build: .
+  #command: bash -c "rm -rf tmp/pids && mkdir -p tmp/pids && bundle exec unicorn -E production -c config/unicorn.rb -p 3000"
+  command: bash -c "rm -rf tmp/pids && mkdir -p tmp/pids && bundle exec rails s -p 3000 -b '0.0.0.0'"
+  dockerfile: dockerfile-jenathon-rails-production
+  container_name : jenathon-production
+  environment:
+      MY_DATABASE_URL: jenathon_db
+      JENATHON_PRODUCTION_DATABASE_PASSWORD: OpenJena
+      SECRET_KEY_BASE: 8261DEE13A4B48784D54FB74DED2A
+  links:
+    - jenathon_db:mysql
+  ports:
+    - "80:3000"
+  volumes:
+    - ./jenathon_rails:/app
+#    - ./log-data:/app/log
