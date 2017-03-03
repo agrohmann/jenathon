@@ -12,8 +12,5 @@ module Api::V1
 	    @@current_api_number
 	  end
 
-	  resource_description do
-      api_version @@current_api_version.to_s
-    end
   end
 end
