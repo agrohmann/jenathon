@@ -1,7 +1,7 @@
 module Api::V1
   class UsersController < BaseController
 
-    respond_to :json
+    #respond_to :json
 
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -13,7 +13,7 @@ module Api::V1
       #check if result exists
       if(target_user)
         #respond existingsearch result
-        respond_with target_user
+        render json: target_user, status: 200
       else
         head 404
       end
@@ -22,7 +22,7 @@ module Api::V1
     # GET /users/1
     # GET /users/1.json
     def show
-      respond_with @user
+      render json: @user, status: 200
     end
 
     # GET /users/new
