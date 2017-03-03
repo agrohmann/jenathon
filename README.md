@@ -8,36 +8,35 @@ repository for the jenathon
 * for Windows 10 use the powershell and docker Win10 app (find here https://docs.docker.com/docker-for-windows/install/)
 
 ## getting started
-getting the sources
+* getting the sources
 ```
 $ git clone https://github.com/agrohmann/jenathon.git
 ```
-build the images
+* build the images
 ```
 $ cd ../jenathon/src
 $ docker-compose build
 ```
-start container from images
-(if you using Win 10, you probably have to remove the volumes entries from the docker-compose files, or make a version 2 dockerfile see also http://stackoverflow.com/questions/40109596/docker-mariadb-mysql-startup-fails-on-windows-host)
+* start container from images (if you using Win 10, you probably have to remove the volumes entries from the docker-compose files, or make a version 2 dockerfile see also http://stackoverflow.com/questions/40109596/docker-mariadb-mysql-startup-fails-on-windows-host)
 ```
 $ docker-compose up -d
 ```
-check if the containers are running
+* check if the containers are running
 ```
 $ docker ps
 ```
-build the database from rails container
+* build the database from rails container
 ```
 $ docker exec -ti jenathon-production /bin/bash
 $ rake db:create
 $ rake db:migrate
 $ exit
 ```
-check your browser at http://localhost/
-do some administration stuff at http://localhost/admin
+* check your browser at http://localhost/
+* do some administration stuff at http://localhost/admin
 
 
-after changing code you should execute
+* after changing code you should execute
 ```
 $ cd ../jenathon/src
 $ docker-compose stop
@@ -52,15 +51,15 @@ $ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 
 
 ## hands on
-look at https://apneadiving.github.io/ for some examples
-to add own data use following (see also http://guides.rubyonrails.org/command_line.html#rails-generate)
+* look at https://apneadiving.github.io/ for some examples
+* to add own data use following (see also http://guides.rubyonrails.org/command_line.html#rails-generate)
 ```
 $ docker exec -ti jenathon-production /bin/bash
 $ rails generate scaffold Example attr1:string attr2:integer
 $ rake db:migrate
 ```
 
-to prepare the data for the app change following file ..\jenathon\src\jenathon_rails\app\controllers\static_pages_controller.rb
+* to prepare the data for the app change following file ..\jenathon\src\jenathon_rails\app\controllers\static_pages_controller.rb
 ```ruby
 def home
   # TODO: add more own models here to display in the map
@@ -80,14 +79,11 @@ def home
   end
 end
 ```
-
-to check whats possible to in google maps visit this site https://developers.google.com/maps/documentation/javascript/tutorial
-
-
-get your google map api key here https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de#key
+* to check whats possible to in google maps visit this site https://developers.google.com/maps/documentation/javascript/tutorial
+* get your google map api key here https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de#key
 
 
-to change the javascript code in the template itselfs change following file ..\jenathon\src\jenathon_rails\app\views\static_pages\home.html.erb
+* to change the javascript code in the template itselfs change following file ..\jenathon\src\jenathon_rails\app\views\static_pages\home.html.erb
 ```html
 <script src="//maps.google.com/maps/api/js?key=[AD_YOUR_KEY_HERE]"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
@@ -106,7 +102,5 @@ to change the javascript code in the template itselfs change following file ..\j
   });
 </script>
 ```
-
-add icons for the map here /jenathon/src/jenathon_rails/public/icons, note that they have to have the format 32x32
-
-the docker image that is used can be find here https://hub.docker.com/r/agrohmann/ruby_nodejs/ (its only ruby with installed nodejs)
+* add icons for the map here /jenathon/src/jenathon_rails/public/icons, note that they have to have the format 32x32
+* the docker image that is used can be find here https://hub.docker.com/r/agrohmann/ruby_nodejs/ (its only ruby with installed nodejs)
