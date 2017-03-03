@@ -17,7 +17,7 @@ $ git clone https://github.com/agrohmann/jenathon.git
 $ cd ../jenathon/src
 $ docker-compose build
 ```
-* start container from images (if you using Win 10, you probably have to remove the volumes entries from the docker-compose files, or make a version 2 dockerfile see also http://stackoverflow.com/questions/40109596/docker-mariadb-mysql-startup-fails-on-windows-host)
+* start container from images (if you using Win 10, you probably have to remove the volumes entries from the docker-compose files, or make a version 2 dockerfile see also [here](http://stackoverflow.com/questions/40109596/docker-mariadb-mysql-startup-fails-on-windows-host) )
 ```
 $ docker-compose up -d
 ```
@@ -32,10 +32,8 @@ $ rake db:create
 $ rake db:migrate
 $ exit
 ```
-* check your browser at http://localhost/
-* do some administration stuff at http://localhost/admin
-
-
+* check your browser at [http://localhost/](http://localhost/)
+* do some administration stuff at [http://localhost/admin](http://localhost/admin)
 * after changing code you should execute
 ```
 $ cd ../jenathon/src
@@ -51,8 +49,8 @@ $ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 
 
 ## hands on
-* look at https://apneadiving.github.io/ for some examples
-* to add own data use following (see also http://guides.rubyonrails.org/command_line.html#rails-generate)
+* look [for some examples](https://apneadiving.github.io/)
+* to add own data use following ( [see also here](http://guides.rubyonrails.org/command_line.html#rails-generate) )
 ```
 $ docker exec -ti jenathon-production /bin/bash
 $ rails generate scaffold Example attr1:string attr2:integer
@@ -79,8 +77,8 @@ def home
   end
 end
 ```
-* to check whats possible to in google maps visit this site https://developers.google.com/maps/documentation/javascript/tutorial
-* get your google map api key here https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de#key
+* check whats possible in [google maps](https://developers.google.com/maps/documentation/javascript/tutorial)
+* get your google map api key [here](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de#key)
 
 
 * to change the javascript code in the template itselfs change following file ..\jenathon\src\jenathon_rails\app\views\static_pages\home.html.erb
@@ -103,4 +101,4 @@ end
 </script>
 ```
 * add icons for the map here /jenathon/src/jenathon_rails/public/icons, note that they have to have the format 32x32
-* the docker image that is used can be find here https://hub.docker.com/r/agrohmann/ruby_nodejs/ (its only ruby with installed nodejs)
+* the [docker image](https://hub.docker.com/r/agrohmann/ruby_nodejs/) that is used (its only ruby with installed nodejs)
