@@ -30,14 +30,14 @@
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
   var eventTime = new Date(value.targeted_at);
-  var maxTime = new Date(eventTime.getDate() + daysAhead);
+  var maxTime = new Date((new Date()).getDate() + daysAhead);
   return eventTime <= maxTime;
 }
 
 $(".btn-group label").click(function () {
     var data = <%=raw @events.as_json.to_json %>;
-    var elem_id = $(this).id;
-    $(elem_id).button('toggle');
+    $(this).button('toggle');
+    var elem_id = $(this).children("input").attr("id");
     switch(elem_id) {
     case "max_date_tomorrow":
         data = data.filter((el) => isInTimeframe(el, 1));
