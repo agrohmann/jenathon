@@ -13,23 +13,23 @@
 </div>
 
 <script type="text/javascript">
-  handler = Gmaps.build('Google');
+  var handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
     // TODO:
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    var markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });
 </script>
 
 <script type="text/javascript">
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
+  var handler2 = Gmaps.build('Google');
+  handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
 
     // TODO:
-    markers = handler.addMarkers(<%=raw @hash2.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
+    var markers = handler.addMarkers(<%=raw @hash2.to_json %>);
+    handler2.bounds.extendWith(markers);
+    handler2.fitMapToBounds();
   });
 </script>
