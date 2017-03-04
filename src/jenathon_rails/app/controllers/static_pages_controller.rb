@@ -41,6 +41,7 @@ class StaticPagesController < ApplicationController
       marker.lat event.latitude
       marker.lng event.longitude
       marker.infowindow event.description
+      marker.user_data.targeted_at = event.targeted_at
 
       case event.category.downcase
       when "party"
