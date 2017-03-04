@@ -14,6 +14,9 @@ class StaticPagesController < ApplicationController
       end
     end
 
+    # placeholder search string
+	  search_conditions = []
+
     # check for search params
     if params.key?(:max_date_time)
       # set search condition

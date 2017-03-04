@@ -8,7 +8,7 @@ module Api::V1
     def index
 
       # placeholder search string
-	      search_conditions = []
+	    search_conditions = []
 
       # check for search params
       if params.key?(:max_date_time)
