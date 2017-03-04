@@ -27,9 +27,9 @@ class StaticPagesController < ApplicationController
     end
 
     @hash2 = Gmaps4rails.build_markers(@events) do |event, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
-      marker.infowindow user.description
+      marker.lat event.latitude
+      marker.lng event.longitude
+      marker.infowindow event.description
 
       case event.category
       when "party"
