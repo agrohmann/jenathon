@@ -28,6 +28,12 @@
 </div>
 
 <script type="text/javascript">
+$(".btn-group label").click(function () {
+    $($(this).id).button('toggle');
+});
+</script>
+
+<script type="text/javascript">
   var handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
