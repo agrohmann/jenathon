@@ -10,10 +10,8 @@ class Event < ApplicationRecord
     case category.downcase
     when "party"
       icon_url = "http://139.59.135.199/icons/party.png"
-    else
     when "tech"
       icon_url = "http://139.59.135.199/icons/tech.png"
-    else
     when "party"
       icon_url = "http://139.59.135.199/icons/social.png"
     else
