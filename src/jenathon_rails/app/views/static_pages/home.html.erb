@@ -31,7 +31,7 @@ function isInTimeframe(value, daysAhead) {
   return eventTime <= maxTime;
 }
 
-$(".btn-group label").click(function () {
+function onMaxTimeSelect() {
     var data = <%=raw @events.as_json.to_json %>;
     var filtered = [];
     var maxDays = 0;
@@ -69,16 +69,11 @@ $(".btn-group label").click(function () {
       handler2.bounds.extendWith(markers);
       handler2.fitMapToBounds();
     });
-});
+}
+
+$(".btn-group label").click(onMaxTimeSelect);
 </script>
 
 <script type="text/javascript">
-  var handler2 = Gmaps.build('Google');
-  handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
-
-    // TODO:
-    var markers = handler2.addMarkers(<%=raw @hash2.to_json %>);
-    handler2.bounds.extendWith(markers);
-    handler2.fitMapToBounds();
-  });
+  $("#max_date_today").click();
 </script>
