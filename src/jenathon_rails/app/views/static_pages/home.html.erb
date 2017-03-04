@@ -28,7 +28,7 @@ function isInTimeframe(value, daysAhead) {
   var eventTime = new Date(Date(value.targeted_at.substring(0, 11)));
   var maxTime = new Date();
   maxTime.setDate(maxTime.getDate() + daysAhead);
-  return eventTime <= maxTime;
+  return eventTime.getTime() <= maxTime.getTime();
 }
 
 $(".btn-group label").click(function () {
