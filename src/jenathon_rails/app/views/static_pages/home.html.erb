@@ -23,10 +23,6 @@
   <div id="map2" style='width: 1200px; height: 600px;'></div>
 </div>
 
-<div style='width: 1200px;'>
-  <div id="map" style='width: 1200px; height: 600px;'></div>
-</div>
-
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
   var eventTime = new Date(Date(value.targeted_at.substring(0, 11)));
@@ -66,17 +62,6 @@ $(".btn-group label").click(function () {
       handler2.fitMapToBounds();
     });
 });
-</script>
-
-<script type="text/javascript">
-  var handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-
-    // TODO:
-    var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
 </script>
 
 <script type="text/javascript">
