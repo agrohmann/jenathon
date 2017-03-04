@@ -28,7 +28,7 @@
   handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
 
     // TODO:
-    var markers = handler.addMarkers(<%=raw @hash2.to_json %>);
+    var markers = handler2.addMarkers(<%=raw @hash2.to_json %>);
     handler2.bounds.extendWith(markers);
     handler2.fitMapToBounds();
   });
