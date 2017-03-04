@@ -17,17 +17,24 @@ class StaticPagesController < ApplicationController
     # placeholder search string
 	  search_conditions = []
 
-    # check for search params
-    if params.key?(:max_date_time)
-      # set search condition
-	    search_conditions.push("targeted_at > ?")
-      search_conditions.push("targeted_at < ?")
+    ## check for search params
+    #if params.key?(:max_date_time)
+    #  # set search condition
+	  #  search_conditions.push("targeted_at > ?")
+    #  search_conditions.push("targeted_at < ?")
 
-		  # get events for user only, + search conditions
-      @events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.parse(params[:max_date_time]))
-    else
-      @events = Event.all
-    end
+		#  # get events for user only, + search conditions
+    #  @events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.parse(params[:max_date_time]))
+    #else
+    #  @events = Event.all
+    #end
+
+    # set search condition
+	  search_conditions.push("targeted_at > ?")
+    search_conditions.push("targeted_at < ?")
+
+		# get events for user only, + search conditions
+    @events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.now + 10.days)
 
     @hash2 = Gmaps4rails.build_markers(@events) do |event, marker|
       marker.lat event.latitude
