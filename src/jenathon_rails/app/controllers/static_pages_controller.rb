@@ -31,15 +31,18 @@ class StaticPagesController < ApplicationController
       marker.lng user.longitude
       marker.infowindow user.description
 
-      grade = gets.chomp
-      case grade
-      when "A", "B"
-        puts 'You pretty smart!'
-      when "C", "D"
-        puts 'You pretty dumb!!'
+      case event.category
+      when "party"
+        icon_url = "http://139.59.135.199/icons/party.png"
       else
-        puts "You can't even use a computer!"
+        icon_url = "http://139.59.135.199/icons/standard.png"
       end
+
+      marker.picture({
+          "url" => icon_url,
+          "width" => 32,
+          "height" => 32
+        })
     end
   end
 end
