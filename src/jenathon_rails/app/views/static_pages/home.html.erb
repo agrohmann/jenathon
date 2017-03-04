@@ -30,7 +30,8 @@
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
   var eventTime = new Date(Date(value.targeted_at.substring(0, 11)));
-  var maxTime = new Date((new Date()).getDate() + daysAhead);
+  var maxTime = new Date();
+  maxTime.setDate(maxTime.getDate() + daysAhead);
   return eventTime <= maxTime;
 }
 
