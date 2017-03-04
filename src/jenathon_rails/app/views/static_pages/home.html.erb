@@ -35,7 +35,7 @@ function isInTimeframe(value, daysAhead) {
 }
 
 $(".btn-group label").click(function () {
-    var data = <%=raw @events.to_json %>;
+    var data = <%=raw @events.as_json %>;
     $($(this).id).button('toggle');
     switch($(this).id) {
     case "max_date_tomorrow":
