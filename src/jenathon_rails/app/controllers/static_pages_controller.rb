@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
     search_conditions.push("targeted_at < ?")
 
 		# get events for user only, + search conditions
-    @events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.now + 10.days)
+    @events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.now + 7.days)
 
     @hash2 = Gmaps4rails.build_markers(@events) do |event, marker|
       marker.lat event.latitude
