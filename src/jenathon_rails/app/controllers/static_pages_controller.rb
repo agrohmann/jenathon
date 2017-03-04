@@ -34,7 +34,7 @@ class StaticPagesController < ApplicationController
       marker.lng event.longitude
       marker.infowindow event.description
 
-      case event.category
+      case event.category.downcase
       when "party"
         icon_url = "http://139.59.135.199/icons/party.png"
       else
