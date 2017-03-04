@@ -17,6 +17,7 @@ class StaticPagesController < ApplicationController
     # placeholder search string
 	  search_conditions = []
 
+    # TODO: adapt later for js handle
     ## check for search params
     #if params.key?(:max_date_time)
     #  # set search condition

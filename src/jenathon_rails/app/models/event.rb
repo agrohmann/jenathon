@@ -18,7 +18,7 @@ class Event < ApplicationRecord
       icon_url = "http://139.59.135.199/icons/standard.png"
     end
 
-    h[:icon_url] = icon_url
+    h[:icon] = icon_url
 
     # return output
     h
