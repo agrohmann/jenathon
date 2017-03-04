@@ -41,13 +41,13 @@ $(".btn-group label").click(function () {
     var elem_id = $(this).attr("id");
     switch(elem_id) {
     case "max_date_tomorrow":
-        data = data.filter((el) => isInTimeframe(el, 1));
+        data = data.filter(el => isInTimeframe(el, 1));
         break;
     case "max_date_next_week":
-        data = data.filter((el) => isInTimeframe(el, 7));
+        data = data.filter(el => isInTimeframe(el, 7));
         break;
     default:
-        data = data.filter((el) => isInTimeframe(el, 0));
+        data = data.filter(el => isInTimeframe(el, 0));
     }
     for (var i = 0, len = data.length; i < len; i++) {
         var datum = data[i];
