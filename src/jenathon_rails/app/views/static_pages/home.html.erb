@@ -36,8 +36,9 @@ function isInTimeframe(value, daysAhead) {
 
 $(".btn-group label").click(function () {
     var data = <%=raw @events.as_json.to_json %>;
-    $($(this).id).button('toggle');
-    switch($(this).id) {
+    var elem_id = $(this).id;
+    $(elem_id).button('toggle');
+    switch(elem_id) {
     case "max_date_tomorrow":
         data = data.filter((el) => isInTimeframe(el, 1));
         break;
@@ -46,7 +47,6 @@ $(".btn-group label").click(function () {
         break;
     default:
         data = data.filter((el) => isInTimeframe(el, 0));
-        break;
     }
     for (var i = 0, len = data.length; i < len; i++) {
         var datum = data[i];
