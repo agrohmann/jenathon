@@ -25,10 +25,10 @@
 
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
-  var eventTime = Date.parse(value.targeted_at.substring(0, 10));
+  var eventTime = new Date(Date.parse(value.targeted_at.substring(0, 10)));
   var maxTime = new Date();
   maxTime.setDate(maxTime.getDate() + daysAhead);
-  return eventTime.getTime() <= maxTime.getTime();
+  return eventTime <= maxTime;
 }
 
 $(".btn-group label").click(function () {
