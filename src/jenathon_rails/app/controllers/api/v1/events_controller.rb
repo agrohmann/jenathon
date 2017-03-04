@@ -14,9 +14,10 @@ module Api::V1
       if params.key?(:max_date_time)
         # set search condition
 	      search_conditions.push("targeted_at > ?")
+        search_conditions.push("targeted_at < ?")
 
 		    # get events for user only, + search conditions
-        events = Event.where(search_conditions.join(" and "), Time.zone.now)
+        events = Event.where(search_conditions.join(" and "), Time.zone.now, Time.zone.parse(params[:max_time]))
       else
         events = Event.all
       end
