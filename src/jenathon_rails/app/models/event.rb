@@ -12,7 +12,7 @@ class Event < ApplicationRecord
       icon_url = "http://139.59.135.199/icons/party.png"
     when "tech"
       icon_url = "http://139.59.135.199/icons/tech.png"
-    when "party"
+    when "social"
       icon_url = "http://139.59.135.199/icons/social.png"
     else
       icon_url = "http://139.59.135.199/icons/standard.png"
