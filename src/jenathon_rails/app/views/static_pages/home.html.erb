@@ -34,26 +34,28 @@ function isInTimeframe(value, daysAhead) {
 $(".btn-group label").click(function () {
     var data = <%=raw @events.as_json.to_json %>;
     var filtered = [];
+    var maxDays = 0;
     $(this).button('toggle');
     var elem_id = $(this).attr("id");
     switch(elem_id) {
     case "max_date_tomorrow":
-        filtered = data.filter(el => isInTimeframe(el, 1));
+        maxDays = 1;
         break;
     case "max_date_next_week":
-        filtered = data.filter(el => isInTimeframe(el, 7));
+        maxDays = 7;
         break;
     default:
-        filtered = data.filter(el => isInTimeframe(el, 0));
+        maxDays = 0;
     }
-    for (var i = 0, len = filtered.length; i < len; i++) {
-        var datum = filtered[i];
-        datum[ "lat" ] = datum[ "latitude" ];
-        delete datum[ "latitude" ];
-        datum[ "lng" ] = datum[ "longitude" ];
-        delete datum[ "longitude" ];
-        datum[ "infowindow" ] = datum[ "description" ];
-        delete datum[ "description" ];
+    for (var i = 0, len = data.length; i < len; i++) {
+        var datum = data[i];
+        if (isInTimeframe(datum, maxDays)) {
+            var newDatum = {};
+            newDatum[ "lat" ] = datum[ "latitude" ];
+            newDatum[ "lng" ] = datum[ "longitude" ];
+            newDatum[ "infowindow" ] = datum[ "description" ];
+            filtered.push(newDatum);
+        }
     }
 
     var handler2 = Gmaps.build('Google');
