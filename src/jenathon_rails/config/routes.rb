@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # api placeholders
   concern :api_controllers do
     resources :users, :only => [:index, :show, :create, :update, :destroy]
+    resources :events, :only => [:index, :show, :create, :update, :destroy]
   end
 
   # api routing using concerns

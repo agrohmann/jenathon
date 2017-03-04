@@ -1,8 +1,6 @@
 module Api::V1
   class UsersController < BaseController
 
-    #respond_to :json
-
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     # GET /users
