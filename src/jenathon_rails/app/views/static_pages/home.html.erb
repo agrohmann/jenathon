@@ -25,52 +25,55 @@
 
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
-  var eventTime = new Date(Date(value.targeted_at.substring(0, 11)));
+  var eventTime = new Date(Date.parse(value.targeted_at.substring(0, 10)));
   var maxTime = new Date();
   maxTime.setDate(maxTime.getDate() + daysAhead);
   return eventTime <= maxTime;
 }
 
-$(".btn-group label").click(function () {
+function onMaxTimeSelect() {
     var data = <%=raw @events.as_json.to_json %>;
+    var filtered = [];
+    var maxDays = 0;
     $(this).button('toggle');
     var elem_id = $(this).attr("id");
     switch(elem_id) {
     case "max_date_tomorrow":
-        data = data.filter((el) => isInTimeframe(el, 1));
+        maxDays = 1;
         break;
     case "max_date_next_week":
-        data = data.filter((el) => isInTimeframe(el, 7));
+        maxDays = 7;
         break;
     default:
-        data = data.filter((el) => isInTimeframe(el, 0));
+        maxDays = 0;
     }
     for (var i = 0, len = data.length; i < len; i++) {
         var datum = data[i];
-        datum[ "lat" ] = datum[ "latitude" ];
-        delete datum[ "latitude" ];
-        datum[ "lng" ] = datum[ "longitude" ];
-        delete datum[ "longitude" ];
-        datum[ "infowindow" ] = datum[ "description" ];
-        delete datum[ "description" ];
+        if (isInTimeframe(datum, maxDays)) {
+            var newDatum = {};
+            newDatum[ "lat" ] = datum[ "latitude" ];
+            newDatum[ "lng" ] = datum[ "longitude" ];
+            newDatum[ "infowindow" ] = datum[ "description" ];
+            newDatum[ "picture" ] = {
+              "url": datum[ "icon" ],
+              "width": 32,
+              "height": 32
+            };
+            filtered.push(newDatum);
+        }
     }
 
     var handler2 = Gmaps.build('Google');
     handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
-      var markers = handler2.addMarkers(data);
+      var markers = handler2.addMarkers(filtered);
       handler2.bounds.extendWith(markers);
       handler2.fitMapToBounds();
     });
-});
+}
+
+$(".btn-group label").click(onMaxTimeSelect);
 </script>
 
 <script type="text/javascript">
-  var handler2 = Gmaps.build('Google');
-  handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
-
-    // TODO:
-    var markers = handler2.addMarkers(<%=raw @hash2.to_json %>);
-    handler2.bounds.extendWith(markers);
-    handler2.fitMapToBounds();
-  });
+  $("#max_date_today").click();
 </script>
