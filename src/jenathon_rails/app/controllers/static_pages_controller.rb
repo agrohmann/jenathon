@@ -37,6 +37,10 @@ class StaticPagesController < ApplicationController
       case event.category.downcase
       when "party"
         icon_url = "http://139.59.135.199/icons/party.png"
+      when "tech"
+        icon_url = "http://139.59.135.199/icons/tech.png"
+      when "social"
+        icon_url = "http://139.59.135.199/icons/social.png"
       else
         icon_url = "http://139.59.135.199/icons/standard.png"
       end
