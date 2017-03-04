@@ -48,12 +48,16 @@ $(".btn-group label").click(function () {
         data = data.filter((el) => isInTimeframe(el, 0));
         break;
     }
-    data[ "lat" ] = data[ "latitude" ];
-    delete data[ "latitude" ];
-    data[ "lng" ] = data[ "longitude" ];
-    delete data[ "longitude" ];
-    data[ "infowindow" ] = data[ "description" ];
-    delete data[ "description" ];
+    for (var i = 0, len = data.length; i < len; i++) {
+        var datum = data[i];
+        datum[ "lat" ] = datum[ "latitude" ];
+        delete datum[ "latitude" ];
+        datum[ "lng" ] = datum[ "longitude" ];
+        delete datum[ "longitude" ];
+        datum[ "infowindow" ] = datum[ "description" ];
+        delete datum[ "description" ];
+    }
+
     var handler2 = Gmaps.build('Google');
     handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
       var markers = handler2.addMarkers(data);
