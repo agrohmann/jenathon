@@ -8,14 +8,14 @@
 <h1>Events in Jena</h1>
 
 <div class="btn-group" data-toggle="buttons" role="group" aria-label="Latest event date selector">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="max_date_today" autocomplete="off" checked>Today
+  <label class="btn btn-primary active" id="max_date_today">
+    <input type="radio" name="options" autocomplete="off" checked>Today
   </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="max_date_tomorrow" autocomplete="off">Tomorrow
+  <label class="btn btn-primary" id="max_date_tomorrow">
+    <input type="radio" name="options" autocomplete="off">Tomorrow
   </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="max_date_next_week" autocomplete="off">Next Week
+  <label class="btn btn-primary" id="max_date_next_week">
+    <input type="radio" name="options" autocomplete="off">Next Week
   </label>
 </div>
 
@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
 function isInTimeframe(value, daysAhead) {
-  var eventTime = new Date(value.targeted_at);
+  var eventTime = new Date(value.targeted_at.substring(0, 11));
   var maxTime = new Date((new Date()).getDate() + daysAhead);
   return eventTime <= maxTime;
 }
@@ -37,7 +37,7 @@ function isInTimeframe(value, daysAhead) {
 $(".btn-group label").click(function () {
     var data = <%=raw @events.as_json.to_json %>;
     $(this).button('toggle');
-    var elem_id = $(this).children("input").attr("id");
+    var elem_id = $(this).attr("id");
     switch(elem_id) {
     case "max_date_tomorrow":
         data = data.filter((el) => isInTimeframe(el, 1));
